@@ -8,19 +8,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.green),
-      home: Scaffold(
-          appBar: AppBar(
-              centerTitle: true, //文字居中
-              title: const Text(
-                "消息",
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              )),
-          //程序主体部分
-          body: Column(children: [WeChat(), MyText(), MyButton()])),
-    );
+        theme: ThemeData(primaryColor: Colors.green),
+        home: Scaffold(
+            appBar: AppBar(
+                centerTitle: true, //文字居中
+                title: const Text(
+                  "消息",
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                )),
+            //程序主体部分
+            body: Column(children: [WeChat(), MyText(), MyButton()])));
   }
 }
 
@@ -100,6 +99,7 @@ class MyText extends StatelessWidget {
     return Container(
         width: 300,
         height: 300,
+        margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
         child: Text(
             "父帅。”她坐到床头，落泪道，“要不我回京请个太医来，或许太医会有办法？”,他笑了笑，柔声道：“生死有命，何必强求呢，如今我唯一放不下就是你了。”爹。”她不知说什么好。老元帅指了指桌案上的一堆信函",
             //文字两端对齐
@@ -108,7 +108,26 @@ class MyText extends StatelessWidget {
             textDirection: TextDirection.ltr,
             //文字超出屏幕处理方式（clip:裁减，fade:渐隐，ellipsis:显示省略号）
             overflow: TextOverflow.ellipsis,
+            //最大显示行数
             maxLines: 3,
-            style: TextStyle(color: Colors.black38)));
+            style: TextStyle(
+                //文字颜色
+                color: Colors.black38,
+                //文字大小
+                fontSize: 16,
+                //文字加粗
+                fontWeight: FontWeight.w900,
+                //文字样式斜体
+                fontStyle: FontStyle.italic,
+                //文字间隙
+                letterSpacing: 2,
+                //单词间隙
+                wordSpacing: 2,
+                //文字装饰线（underline:下滑线）
+                decoration: TextDecoration.underline,
+                //文字装饰颜色
+                decorationColor: Colors.black38,
+                //文字先装饰风格（dashed:虚线，dotted：实线，double:双实线...）
+                decorationStyle: TextDecorationStyle.dashed)));
   }
 }
