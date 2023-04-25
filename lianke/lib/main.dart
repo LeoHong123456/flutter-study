@@ -8,126 +8,118 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(primaryColor: Colors.green),
-        home: Scaffold(
-            appBar: AppBar(
-                centerTitle: true, //文字居中
-                title: const Text(
-                  "消息",
-                  style: TextStyle(
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: Scaffold(
+        appBar: AppBar(
+            title: Text("微信",
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                    color: Colors.white,
                     fontSize: 16,
-                  ),
-                )),
-            //程序主体部分
-            body: Column(children: [WeChat(), MyText(), MyButton()])));
+                    fontWeight: FontWeight.w900,
+                    wordSpacing: 5,
+                    letterSpacing: 5))),
+        body: Column(
+          children: [
+            Image1(),
+            //原生组件可以用来做占位作用
+            SizedBox(
+              height: 20,
+            ),
+            Image2(),
+            Image3(),
+            Image4()
+          ],
+        ),
+      ),
+    );
   }
 }
 
-class WeChat extends StatelessWidget {
+//加载远程图片
+class Image1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 200,
+      height: 200,
+      alignment: Alignment.center,
+      margin: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+          color: Colors.black,
+          border: Border.all(
+              color: Color.fromARGB(255, 142, 140, 141), width: 1.0)),
+      child: Container(
+        width: 200,
         height: 200,
-        width: 1000,
-        //容器内元元素居中
-        alignment: Alignment.topLeft,
-        //设置容器颜色，BoxDecoration不能同时存在
-        // color: Colors.grey.shade600,
-        //设置容器内边距
-        padding: EdgeInsets.all(8),
-        //设置容器外边距
-        margin: EdgeInsets.only(top: 10, left: 0, right: 0, bottom: 0),
-        //transform (XYZ)位移
-        transform: Matrix4.translationValues(0, 0, 0), //(X,Y,Z)位移
-        // transform: Matrix4.skew(0.1, 0), //倾斜
-        //容器装饰(颜色配置)
-        decoration: BoxDecoration(
-            //背景颜色
-            // color: Colors.black26,
-            //边框设置
-            border: Border.all(color: Colors.red, width: 1),
-            //边框圆角
-            borderRadius: BorderRadius.circular(8),
-            //容器Z轴旋转
-            // transform: Matrix4.rotationZ(0.1),
-            //设置盒子阴影
-            boxShadow: [
-              BoxShadow(
-                  //阴影颜色
-                  color: Colors.green,
-                  //偏移量
-                  offset: Offset(-5, -5),
-                  //传播半径
-                  spreadRadius: 1,
-                  //阴影强度
-                  blurRadius: 15),
-            ],
-            //背景线性渐变:LinearGradient，径向渐变:GadialGradient
-            gradient: LinearGradient(
-                begin: Alignment.topLeft, //起始位置
-                end: Alignment.bottomRight, //结束位置
-                colors: [Colors.green, Colors.yellow])),
-        child:
-            Text("轮播图", style: TextStyle(color: Colors.white, fontSize: 20)));
+        decoration:
+            const BoxDecoration(color: Color.fromARGB(255, 229, 229, 225)),
+        //
+        child: Image.network(
+          "https://img2.baidu.com/it/u=3596896494,3423896281&fm=253&fmt=auto&app=138&f=JPEG?w=130&h=170",
+          //图片缩小
+          scale: 2,
+          //图片位置显示
+          alignment: Alignment.centerLeft,
+          //fit 用来控制图片的拉伸和挤压
+          //fill：全图显示
+          //contain:全图显示原比例
+          //cover:显示原比例，可能拉伸可能裁剪
+          //fitWidth:宽度充满容器,fitHeight:高度充满容器
+          //scaleDown:效果和contain差不多但是此属性不允许显示超过原图片大小
+          //repeat: 平铺
+          fit: BoxFit.fill,
+          //repeat 图片平铺,repeatX,repeatY,noRepeat,
+          repeat: ImageRepeat.repeat,
+        ),
+      ),
+    );
   }
 }
 
-//按钮组件
-class MyButton extends StatelessWidget {
+//圆角图片实例一
+class Image2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 100,
-        height: 40,
-        alignment: Alignment.center,
-        // margin: EdgeInsets.only(top: 20, right: 20, bottom: 20, left: 20),
-        margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-        decoration: BoxDecoration(
-            color: Colors.blue, borderRadius: BorderRadius.circular(8)),
-        child: Text("确认",
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.w800)));
+      height: 200,
+      width: 200,
+      margin: EdgeInsets.fromLTRB(5, 20, 5, 20),
+      decoration: BoxDecoration(
+          color: Colors.green,
+          borderRadius: BorderRadius.circular(100),
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: NetworkImage(
+                "https://img2.baidu.com/it/u=520529508,2494878376&fm=253&fmt=auto&app=138&f=JPEG?w=130&h=170"),
+          )),
+    );
   }
 }
 
-//文本修饰组件
-class MyText extends StatelessWidget {
+//圆角图片实例二
+class Image3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 300,
-        height: 300,
-        margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-        child: Text(
-            "父帅。”她坐到床头，落泪道，“要不我回京请个太医来，或许太医会有办法？”,他笑了笑，柔声道：“生死有命，何必强求呢，如今我唯一放不下就是你了。”爹。”她不知说什么好。老元帅指了指桌案上的一堆信函",
-            //文字两端对齐
-            textAlign: TextAlign.justify,
-            //文本方向从左至右
-            textDirection: TextDirection.ltr,
-            //文字超出屏幕处理方式（clip:裁减，fade:渐隐，ellipsis:显示省略号）
-            overflow: TextOverflow.ellipsis,
-            //最大显示行数
-            maxLines: 3,
-            style: TextStyle(
-                //文字颜色
-                color: Colors.black38,
-                //文字大小
-                fontSize: 16,
-                //文字加粗
-                fontWeight: FontWeight.w900,
-                //文字样式斜体
-                fontStyle: FontStyle.italic,
-                //文字间隙
-                letterSpacing: 2,
-                //单词间隙
-                wordSpacing: 2,
-                //文字装饰线（underline:下滑线）
-                decoration: TextDecoration.underline,
-                //文字装饰颜色
-                decorationColor: Colors.black38,
-                //文字先装饰风格（dashed:虚线，dotted：实线，double:双实线...）
-                decorationStyle: TextDecorationStyle.dashed)));
+        child: ClipOval(
+            child: Image.network(
+                "https://img2.baidu.com/it/u=520529508,2494878376&fm=253&fmt=auto&app=138&f=JPEG?w=130&h=170",
+                width: 150,
+                height: 150,
+                fit: BoxFit.cover)));
+  }
+}
+
+//加载本地图片
+class Image4 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 150,
+        height: 150,
+        margin: EdgeInsets.fromLTRB(5, 20, 5, 20),
+        decoration: const BoxDecoration(color: Colors.green),
+        child: Image.asset("images/jia1.jpeg", fit: BoxFit.cover));
   }
 }
