@@ -5,12 +5,16 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(primarySwatch: Colors.green),
       home: Scaffold(
-        appBar: AppBar(centerTitle: true, title: Text("商品列表")),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text("网格布局"),
+        ),
         body: HomePage(),
       ),
     );
@@ -18,57 +22,41 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
-      child: ListView(
-        padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-        //排列方式，默认是垂直列表（vertical:垂直列表，horizontal：水平列表）
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          Container(
-            // height: 120,
-            //在ListView垂直列表中宽度设置是无效的，默认是自适应(虚借助外层加容器控制)
-            //在ListView 水平列表中高度设置是无效的，默认是自适应(虚借助外层加容器控制)
-            width: 120,
-            decoration: BoxDecoration(color: Colors.green),
-            child: Column(
-              children: [Image.network(""), Text("")],
-            ),
-          ),
-          Container(
-            // height: 120,
-            width: 120,
-            decoration: BoxDecoration(color: Colors.pink),
-          ),
-          Container(
-            // height: 120,
-            width: 120,
-            decoration: BoxDecoration(color: Colors.yellow),
-          ),
-          Container(
-            // height: 120,
-            width: 120,
-            decoration: BoxDecoration(color: Colors.red),
-          ),
-          Container(
-            // height: 120,
-            width: 120,
-            decoration: BoxDecoration(color: Colors.pink[900]),
-          ),
-          Container(
-            // height: 120,
-            width: 120,
-            decoration: BoxDecoration(color: Colors.green[600]),
-          ),
-          Container(
-            // height: 120,
-            width: 120,
-            decoration: BoxDecoration(color: Colors.red[600]),
-          ),
-        ],
-      ),
+    //scrollDirection 类型：Axis 滚动方法
+    //padding  类型EdgeInsetsGeometry  内边距
+    //resolve  类型：bool  组件反向排序
+    //crossAxisSpacing 类型：double 水平子Widget之间间距
+    //mainAxisSpacing 类型：double  垂直子Widget之间间距
+    //crossAxisCount 类型：double 一行Widget数量
+    //maxCrossAxisExtent 类型：double  横轴子元素的最大长度
+    //childAspectRatio 类型：double 子Widget宽高比列
+    //children
+    //gridDelegate 控制布局主要用在GridView.builder里面
+    return GridView.count(
+      crossAxisCount: 4, //一行的数量
+      children: const [
+        Icon(Icons.abc),
+        Icon(Icons.home),
+        Icon(Icons.person_pin),
+        Icon(Icons.abc_rounded),
+        Icon(Icons.access_alarm_sharp),
+        Icon(Icons.ice_skating),
+        Icon(Icons.phone),
+        Icon(Icons.telegram)
+      ],
     );
+  }
+}
+
+class HomePage2 extends StatelessWidget {
+  const HomePage2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
