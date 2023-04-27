@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './icon_font.dart';
+import 'icon_font.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     //列表
     return ListView(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(5),
       children: const <Widget>[
         //列表标题
         ListTile(
@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
           subtitle: const Text("子标题"),
           //后置ICON
           trailing: Icon(Icons.chevron_right_sharp),
-        ),
+        ), 
         //分割线
         Divider(),
 
@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
         Divider(),
 
         ListTile(
-          leading: Icon(Icons.person_4_sharp),
+          leading: Icon(Icons.person_add),
           trailing: Icon(Icons.chevron_right_sharp),
           title: Text("在线客服"),
         ),
