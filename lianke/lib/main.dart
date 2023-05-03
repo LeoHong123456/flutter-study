@@ -5,58 +5,102 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.green),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text("网格布局"),
-        ),
-        body: HomePage(),
+        appBar: AppBar(centerTitle: true, title: Text("测试")),
+        body: HomePage3(),
       ),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+//网格布局方式一
+class HomePage1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //scrollDirection 类型：Axis 滚动方法
-    //padding  类型EdgeInsetsGeometry  内边距
-    //resolve  类型：bool  组件反向排序
-    //crossAxisSpacing 类型：double 水平子Widget之间间距
-    //mainAxisSpacing 类型：double  垂直子Widget之间间距
-    //crossAxisCount 类型：double 一行Widget数量
-    //maxCrossAxisExtent 类型：double  横轴子元素的最大长度
-    //childAspectRatio 类型：double 子Widget宽高比列
-    //children
-    //gridDelegate 控制布局主要用在GridView.builder里面
     return GridView.count(
-      crossAxisCount: 4, //一行的数量
-      children: const [
-        Icon(Icons.abc),
+      crossAxisCount: 5,
+      children: [
         Icon(Icons.home),
-        Icon(Icons.person_pin),
-        Icon(Icons.abc_rounded),
-        Icon(Icons.access_alarm_sharp),
-        Icon(Icons.ice_skating),
-        Icon(Icons.phone),
-        Icon(Icons.telegram)
+        Icon(Icons.home),
+        Icon(Icons.home),
+        Icon(Icons.home),
+        Icon(Icons.home),
+        Icon(Icons.home),
+        Icon(Icons.home),
+        Icon(Icons.home),
+        Icon(Icons.home),
+        Icon(Icons.home),
       ],
     );
   }
 }
 
+//网格布局方式二
 class HomePage2 extends StatelessWidget {
-  const HomePage2({super.key});
+  List<Widget> _initGridViewData() {
+    List<Widget> tempList = [];
+    for (var i = 0; i < 12; i++) {
+      tempList.add(
+        Container(
+          margin: EdgeInsets.all(2),
+          decoration: BoxDecoration(color: Colors.green),
+          child: Text(
+            "标题${i}",
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
+      );
+    }
+    return tempList;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return GridView.extent(
+      //横轴子元素最大长度（此参数必传）
+      maxCrossAxisExtent: 180,
+      children: this._initGridViewData(),
+    );
+  }
+}
+
+//网格布局方式三
+class HomePage3 extends StatelessWidget {
+  List<Widget> _initGridViewData() {
+    List<Widget> tempList = [];
+    for (var i = 0; i < 12; i++) {
+      tempList.add(
+        Container(
+          margin: EdgeInsets.all(2),
+          decoration: BoxDecoration(color: Colors.green),
+          child: Text(
+            "标题${i}",
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
+      );
+    }
+    return tempList;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      //纵向元素间距
+      mainAxisSpacing: 2,
+      //横向元素间距
+      crossAxisSpacing: 2,
+      //横向最大元素
+      crossAxisCount: 2,
+      children: this._initGridViewData(),
+    );
   }
 }
