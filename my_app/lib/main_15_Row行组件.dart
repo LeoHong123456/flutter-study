@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,18 +10,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(primarySwatch: Colors.cyan),
+        theme: ThemeData(primarySwatch: Colors.green),
         home: Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: const Text(
-              "Flex布局",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w500),
-            ),
-          ),
+          appBar: AppBar(title: const Text("Row水平布局组件"), centerTitle: true),
           body: const HomePage(),
         ));
   }
@@ -32,10 +23,23 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      Expanded(flex: 1, child: IconContainer(Icons.home, Colors.yellow)),
-      Expanded(flex: 2, child: IconContainer(Icons.person, Colors.green)),
-    ]);
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      padding: const EdgeInsets.all(5),
+      color: Colors.black26,
+      child: Row(
+        //主轴（外部没用容器是自适应的）
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //辅轴居中（需要借助外部容器，需要设置容器高度）
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          IconContainer(Icons.home, Colors.yellow),
+          IconContainer(Icons.search, Colors.red),
+          IconContainer(Icons.person, Colors.green)
+        ],
+      ),
+    );
   }
 }
 
