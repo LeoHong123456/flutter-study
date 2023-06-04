@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,14 +10,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Flex自适应布局"),
-        ),
-        body: const HomePage(),
-      ),
-    );
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: const Text(
+              "Flex布局",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500),
+            ),
+          ),
+          body: const HomePage(),
+        ));
   }
 }
 
@@ -26,15 +32,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-            flex: 1,
-            child: IconContainer(
-                Icons.home, const Color.fromARGB(255, 164, 238, 202))),
-        const Icon(Icons.search)
-      ],
-    );
+    return Flex(direction: Axis.horizontal, children: [
+      Expanded(flex: 1, child: IconContainer(Icons.home, Colors.yellow)),
+      Expanded(flex: 2, child: IconContainer(Icons.person, Colors.green)),
+    ]);
   }
 }
 
@@ -47,7 +48,7 @@ class IconContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: 110,
-        height: 50,
+        height: 80,
         alignment: Alignment.center,
         color: color,
         child: Icon(
