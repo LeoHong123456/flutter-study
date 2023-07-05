@@ -47,6 +47,7 @@ class IconContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        //如果用到Expanded 组件宽高是不生效的
         width: 110,
         height: 80,
         alignment: Alignment.center,
