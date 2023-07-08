@@ -13,7 +13,7 @@ class Swiper extends StatefulWidget {
 class _SwiperState extends State<Swiper> {
   int _currentIndex = 0;
   List<Widget> pageList = [];
-  late PageController  _pageController;
+  late PageController _pageController;
   late Timer timer;
 
 
