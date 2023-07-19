@@ -15,21 +15,12 @@ class _AnimateSwiperScreenState extends State<AnimateSwiperScreen> {
   @override
   void initState() {
     super.initState();
-    list  = const [
-      "images/01.jpeg",
-      "images/jia1.jpeg",
-      "images/jia2.jpeg"
-    ];
+    list = const ["images/01.jpeg", "images/jia1.jpeg", "images/jia2.jpeg"];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("定时轮播图")),
-      body: Swiper(list: list)
-    );
+        appBar: AppBar(title: const Text("定时轮播图")), body: Swiper(list: list));
   }
 }
-
-
-
